@@ -1,0 +1,14 @@
+/* 
+  ViewController(Spanish).strings
+  LoginFake
+
+  Created by Tony Lieu on 3/5/24.
+  
+*/
+"Username" = "Nombre de usuario";
+"Password" = "Contraseña";
+"login" = "Iniciar sesión";
+"incorrect username or password" = "Nombre de usuario o contraseña incorrectos";
+"Please try again later" = "Por favor, inténtelo de nuevo más tarde";
+"OK" = "OK";
+
