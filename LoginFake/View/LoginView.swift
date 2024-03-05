@@ -19,6 +19,7 @@ class LoginView: UIViewController, UITextFieldDelegate {
         viewTitle.translatesAutoresizingMaskIntoConstraints = false
         return viewTitle
     }()
+    
     private lazy var userName: UITextField = {
         let textField = UITextField()
         //this is more for localiztion for lang
@@ -28,6 +29,7 @@ class LoginView: UIViewController, UITextFieldDelegate {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+    
     //textField for the password
     private lazy var password: UITextField = {
         let textField = UITextField()
@@ -39,6 +41,7 @@ class LoginView: UIViewController, UITextFieldDelegate {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+    
     //loginButton Componet
      private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
@@ -65,6 +68,7 @@ class LoginView: UIViewController, UITextFieldDelegate {
         view.addSubview(password)
         view.addSubview(loginButton)
     }
+    
     //setup where the componet will be placed
     private func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -89,6 +93,7 @@ class LoginView: UIViewController, UITextFieldDelegate {
             loginButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
+    
     // will run when the login button is pushed
     @objc private func loginButtonTapped() {
         if valildationVM.loginVal(emailID: userName.text, passwordinput: password.text) {
@@ -101,6 +106,7 @@ class LoginView: UIViewController, UITextFieldDelegate {
             password.text = ""
         }
      }
+    
     //show alert if the user put in incorrect password
     private func showAlertincorrect(errors: String) {
         //this is more for localiztion for lang
