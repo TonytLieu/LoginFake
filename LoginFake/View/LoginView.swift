@@ -25,63 +25,27 @@ class LoginView: UIViewController, UITextFieldDelegate {
     }()
     // Add the text label acting as a button
     private lazy var createAccount: UILabel = {
-        let label = UILabel()
-        label.text = "Create Account"
-        label.textColor = .blue
-        label.textAlignment = .center
-        label.isUserInteractionEnabled = true // Enable user interaction
-        
-        // Add tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(createAccountButtonTapped))
-        label.addGestureRecognizer(tapGesture)
-        
+        let label = makeLabel(text: NSLocalizedString("Create Account", comment: ""))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(createAccountButtonTapped)))
         return label
     }()
     // Add the text label acting as a button
     private lazy var forgettenPassword: UILabel = {
-        let label = UILabel()
-        label.text = "Forgetten Password"
-        label.textColor = .blue
-        label.textAlignment = .center
-        label.isUserInteractionEnabled = true // Enable user interaction
-        
-        // Add tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(forgettenButtonTapped))
-        label.addGestureRecognizer(tapGesture)
-        
+        let label = makeLabel(text: NSLocalizedString("Forgotten Password", comment: ""))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(forgettenButtonTapped)))
         return label
     }()
     //textField  for the user to unput username
     private lazy var userName: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = NSLocalizedString("Username", comment: "") //this is more for localiztion for lang
-        textField.borderStyle = .roundedRect
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.layer.borderWidth = 1.0
-        textField.layer.cornerRadius = 5.0
-        textField.delegate = self
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.shadowColor = UIColor.black.cgColor
-        textField.layer.shadowOffset = CGSize(width: 0, height: 2)
-        textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowRadius = 4
+        let textField = makeTextField(placeholder: NSLocalizedString("Username", comment: ""))
         return textField
     }()
     //textField for the password
     private lazy var password: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = NSLocalizedString("Password", comment: "") //this is more for localiztion for lang
-        textField.isSecureTextEntry = true // Mask the characters for password
-        textField.borderStyle = .roundedRect
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.layer.borderWidth = 1.0
-        textField.layer.cornerRadius = 5.0
-        textField.delegate = self
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.shadowColor = UIColor.black.cgColor
-        textField.layer.shadowOffset = CGSize(width: 0, height: 2)
-        textField.layer.shadowOpacity = 0.5
-        textField.layer.shadowRadius = 4
+        let textField = makeTextField(placeholder: NSLocalizedString("Password", comment: ""))
+        textField.isSecureTextEntry = true
         return textField
     }()
     
@@ -117,6 +81,8 @@ class LoginView: UIViewController, UITextFieldDelegate {
         view.addSubview(userName)
         view.addSubview(password)
         view.addSubview(loginButton)
+        view.addSubview(createAccount)
+        view.addSubview(forgettenPassword)
     }
     
     //setup where the componet will be placed
@@ -140,7 +106,17 @@ class LoginView: UIViewController, UITextFieldDelegate {
             loginButton.topAnchor.constraint(equalTo: password.bottomAnchor, constant: 20),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.widthAnchor.constraint(equalToConstant: 100),
-            loginButton.heightAnchor.constraint(equalToConstant: 40)
+            loginButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            createAccount.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
+            createAccount.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            createAccount.widthAnchor.constraint(equalToConstant: 120),
+            createAccount.heightAnchor.constraint(equalToConstant: 40),
+            
+            forgettenPassword.topAnchor.constraint(equalTo: createAccount.bottomAnchor, constant: 20),
+            forgettenPassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            forgettenPassword.widthAnchor.constraint(equalToConstant: 190),
+            forgettenPassword.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     // will run when the login button is pushed
@@ -171,5 +147,24 @@ class LoginView: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    private func makeTextField(placeholder: String) -> UITextField {
+        let textField = UITextField()
+        textField.placeholder = placeholder
+        textField.borderStyle = .roundedRect
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderWidth = 1.0
+        textField.layer.cornerRadius = 5.0
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }
+    
+    private func makeLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = .blue
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }
 }

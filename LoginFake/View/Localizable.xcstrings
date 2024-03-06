@@ -1,6 +1,26 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Create Account" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear Cuenta"
+          }
+        }
+      }
+    },
+    "Forgotten Password" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contraseña Olvidada"
+          }
+        }
+      }
+    },
     "Hello, World!" : {
       "localizations" : {
         "es" : {
@@ -11,8 +31,7 @@
         }
       }
     },
-    "incorrect username or password" : {
-      "extractionState" : "manual",
+    "Incorrect Username or Password" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -21,9 +40,6 @@
           }
         }
       }
-    },
-    "Incorrect Username or Password" : {
-
     },
     "Login" : {
       "localizations" : {
@@ -58,10 +74,6 @@
       }
     },
     "Please try again" : {
-
-    },
-    "Please try again later" : {
-      "extractionState" : "manual",
       "localizations" : {
         "es" : {
           "stringUnit" : {
