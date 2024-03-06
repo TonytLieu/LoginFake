@@ -156,6 +156,10 @@ class LoginView: UIViewController, UITextFieldDelegate {
         textField.layer.borderWidth = 1.0
         textField.layer.cornerRadius = 5.0
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.layer.shadowColor = UIColor.black.cgColor
+        textField.layer.shadowOffset = CGSize(width: 0, height: 2)
+        textField.layer.shadowOpacity = 0.5
+        textField.layer.shadowRadius = 4
         return textField
     }
     
