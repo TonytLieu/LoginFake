@@ -10,17 +10,19 @@ import UIKit
 class LoginView: UIViewController, UITextFieldDelegate {
     let valildationVM = ValidationViewModel()
     //this is the title of this view
+    private let gradientLayer = CAGradientLayer()
+    
     private lazy var viewTitle: UILabel = {
         let viewTitle = UILabel()
         viewTitle.text = "Swift"
         viewTitle.textAlignment = .left
         viewTitle.font = UIFont.systemFont(ofSize: 40)
-        viewTitle.textColor = .systemIndigo
+        viewTitle.textColor = .systemBlue
         viewTitle.translatesAutoresizingMaskIntoConstraints = false
         viewTitle.layer.shadowColor = UIColor.black.cgColor
         viewTitle.layer.shadowOffset = CGSize(width: 0, height: 2)
         viewTitle.layer.shadowOpacity = 0.5
-        viewTitle.layer.shadowRadius = 4
+        viewTitle.layer.shadowRadius = 10
         return viewTitle
     }()
     // Add the text label acting as a button
@@ -73,6 +75,16 @@ class LoginView: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .white
         setupUI()
         setupConstraints()
+        
+        // Setup gradient layer
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor.systemPurple.cgColor, UIColor.systemRed.cgColor] // Change colors as desired
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        // Start animation
+        animateGradient()
     }
     //setup function where the compent will be added to the view
     private func setupUI() {
@@ -147,6 +159,16 @@ class LoginView: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    // Function to animate gradient
+    private func animateGradient() {
+        let animation = CABasicAnimation(keyPath: "colors")
+        animation.fromValue = [UIColor.systemIndigo.cgColor, UIColor.systemRed.cgColor] // Start color
+        animation.toValue = [UIColor.systemRed.cgColor, UIColor.systemIndigo.cgColor] // End color
+        animation.duration = 3.0 // Animation duration
+        animation.autoreverses = true // Repeat animation
+        animation.repeatCount = .infinity // Repeat indefinitely
+        gradientLayer.add(animation, forKey: nil)
     }
     private func makeTextField(placeholder: String) -> UITextField {
         let textField = UITextField()
